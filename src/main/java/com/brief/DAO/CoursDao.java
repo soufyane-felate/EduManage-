@@ -1,16 +1,23 @@
 package com.brief.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import com.brief.Controller.Cours;
+
+
+import java.util.List;
 
 public class CoursDao {
-    private Connection con;
-    public CoursDao(Connection con) {
 
+    public void addCourse(Cours course){
 
     }
+
+    //public List<Cours> getAllCourses() {  }
+
+    public void updateCourse(Cours course) { }
+    public void deleteCourse(Cours course) { }
+
 
 
 
 }
+
