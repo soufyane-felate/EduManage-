@@ -8,9 +8,97 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Student info</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 900px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        form {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
+<div class="container mt-6">
+    <h1>Student info</h1>
+    <table class="table table-studentinfo">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Date_naissance</th>
+            <th>Cours</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>${student.id}</td>
+            <td>${student.nom}</td>
+            <td>${student.prenom}</td>
+            <td>${student.email}</td>
+            <td>${student.date_naissance}</td>
+            <td>${student.cours}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
 
 </body>
 </html>
