@@ -1,7 +1,8 @@
 package com.brief.DAO;
 
-import com.brief.Controller.Cours;
 
+
+import com.brief.Model.Cours;
 
 import java.util.List;
 
