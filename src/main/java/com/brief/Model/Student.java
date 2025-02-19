@@ -1,23 +1,35 @@
 package com.brief.Model;
 
 public class Student {
-    String name;
+    int id;
+    String nom;
     String prenom;
     String email;
     String dateNaissance;
-    public Student(String name, String prenom, String email, String dateNaissance) {
-        this.name = name;
+    public Student(String nom, String prenom, String email, String dateNaissance) {
+        this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.dateNaissance = dateNaissance;
     }
 
-    public String getName() {
-        return name;
+    public Student() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getPrenom() {

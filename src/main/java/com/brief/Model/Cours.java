@@ -1,17 +1,16 @@
 
 package com.brief.Model;
 
-import com.brief.Controller.AddStudent;
 
 public class Cours {
     private int id;
-    private AddStudent student;
-    private Cours cours;
+    private String nom_cours;
+    private String date_naissance;
 
-    public Cours(int id, AddStudent student, Cours cours) {
+    public Cours(int id, String nom_cours, String date_naissance) {
         this.id = id;
-        this.student = student;
-        this.cours = cours;
+        this.nom_cours = nom_cours;
+        this.date_naissance = date_naissance;
     }
 
     public Cours() {
@@ -25,19 +24,19 @@ public class Cours {
         this.id = id;
     }
 
-    public AddStudent getStudent() {
-        return student;
+    public String getNom_cours() {
+        return nom_cours;
     }
 
-    public void setStudent(AddStudent student) {
-        this.student = student;
+    public void setNom_cours(String nom_cours) {
+        this.nom_cours = nom_cours;
     }
 
-    public Cours getCours() {
-        return cours;
+    public String getDate_naissance() {
+        return date_naissance;
     }
 
-    public void setCours(Cours cours) {
-        this.cours = cours;
+    public void setDate_naissance(String date_naissance) {
+        this.date_naissance = date_naissance;
     }
 }

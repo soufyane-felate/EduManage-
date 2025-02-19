@@ -1,3 +1,5 @@
+<%@ page import="com.brief.Model.Student" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,32 +13,26 @@
         body {
             background-color: #f4f7f9;
         }
-
         .container {
             margin-top: 50px;
         }
-
         .card {
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
-
         .table {
             margin-top: 20px;
         }
-
         .table thead {
             background-color: #343a40;
             color: white;
         }
-
         .btn-custom {
             background-color: #198754;
             color: white;
             transition: 0.3s;
         }
-
         .btn-custom:hover {
             background-color: #145c38;
         }
@@ -59,20 +55,36 @@
             </tr>
             </thead>
             <tbody>
+            <%
+                List<Student> students = (List<Student>) request.getAttribute("students");
+                if (students != null && !students.isEmpty()) {
+                    for (Student student : students) {
+            %>
             <tr>
-                <td>${student.id}</td>
-                <td>${student.nom}</td>
-                <td>${student.prenom}</td>
-                <td>${student.email}</td>
-                <td>${student.date_naissance}</td>
+                <td><%= student.getId() %></td>
+                <td><%= student.getNom() %></td>
+                <td><%= student.getPrenom() %></td>
+                <td><%= student.getEmail() %></td>
+                <td><%= student.getDateNaissance() %></td>
             </tr>
+            <%
+                }
+            } else {
+            %>
+            <tr>
+                <td colspan="5" class="text-center">Aucun etudiant trouve</td>
+            </tr>
+            <%
+                }
+            %>
             </tbody>
         </table>
     </div>
 
     <div class="text-center mt-3">
-        <a href="student" class="btn btn-lg btn-custom"><i class="fas fa-plus"></i> Ajouter un étudiant</a>
+        <a href="AddStudent.jsp" class="btn btn-lg btn-custom"><i class="fas fa-plus"></i> Ajouter un étudiant</a>
     </div>
 </div>
+
 </body>
 </html>
