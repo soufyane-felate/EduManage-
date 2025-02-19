@@ -77,27 +77,22 @@
     </style>
 </head>
 <body>
-<div class="container mt-6">
-    <h1>Create Student</h1>
-    <form action="addStudent" method="post">
+
+
+<div class="container mt-5">
+    <h1>Create Cours</h1>
+    <form action="cours" method="post">
         <div class="form-group">
-            <label for="name">Nom:</label>
+            <label for="name">Nom du cours:</label>
             <input type="text" class="form-control" name="name" id="name">
         </div>
         <div class="form-group">
-            <label for="prenom">Prenom:</label>
-            <input type="text" class="form-control" name="prenom" id="prenom">
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="text" class="form-control" name="email" id="email">
-        </div>
-        <div class="form-group">
-            <label for="date">Date_naissance:</label>
-            <input type="date" class="form-control" name="date" id="date">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" name="description" id="description">
         </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 </div>
+
 </body>
 </html>
