@@ -6,116 +6,89 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <title>Cours list</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Cours</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #f4f7f6;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+            background-color: #f4f7f9;
+        }
 
-    .container {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        width: 90%;
-        max-width: 900px;
-    }
+        .container {
+            margin-top: 50px;
+        }
 
-    h1 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 20px;
-    }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        background: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+        .table {
+            margin-top: 20px;
+        }
 
-    .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: center;
-    }
+        .table thead {
+            background-color: #343a40;
+            color: white;
+        }
 
-    .table th {
-        background-color: #4CAF50;
-        color: white;
-    }
+        .btn-custom {
+            background-color: #198754;
+            color: white;
+            transition: 0.3s;
+        }
 
-    .table tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
+        .btn-custom:hover {
+            background-color: #145c38;
+        }
 
-    .table tbody tr:hover {
-        background-color: #f1f1f1;
-    }
 
-    .btn {
-        padding: 8px 12px;
-        border-radius: 5px;
-        font-size: 14px;
-        text-decoration: none;
-        display: inline-block;
-        text-align: center;
-        transition: 0.3s ease;
-        border: none;
-        cursor: pointer;
-    }
-    .btn-success {
-        background-color: #28a745;
-        color: white;
-        display: block;
-        width: fit-content;
-        margin: auto;
-    }
-
-    .btn-success:hover {
-        background-color: #1e7e34;
-    }
-
-    form {
-        display: inline;
-    }
     </style>
 </head>
 <body>
-<div class="container mt-6">
-<h1>Cours List</h1>
-<table class="table table-cours">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
 
+<div class="container">
+    <h2 class="text-center mb-4">Gestion des Cours</h2>
+
+
+    <div class="card p-3">
+        <form class="row g-2">
+            <div class="col-md-10">
+                <input class="form-control form-control-lg" type="search" placeholder="Rechercher un cours">
+            </div>
+            <div class="col-md-2 text-end">
+                <button class="btn btn-lg btn-custom" type="submit"><i class="fas fa-search"></i> Rechercher</button>
+            </div>
+        </form>
+    </div>
+
+
+    <table class="table table-striped table-hover mt-4">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
         <tr>
             <td>${Cours.id}</td>
+            <td>${Cours.nom}</td>
             <td>${Cours.description}</td>
-
         </tr>
-    </tbody>
-</table>
-<a href="cours" class="btn btn-success">Add New Cours</a>
-</div>
+        </tbody>
+    </table>
 
+
+    <div class="text-center">
+        <a href="cours" class="btn btn-lg btn-custom"><i class="fas fa-plus"></i> Ajouter un nouveau cours</a>
+    </div>
+</div>
 </body>
 </html>

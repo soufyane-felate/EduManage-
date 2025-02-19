@@ -1,124 +1,78 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: oucht
-  Date: 2/18/2025
-  Time: 10:27 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <title>Student list</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Étudiants</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f4f7f9;
         }
 
         .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 900px;
+            margin-top: 50px;
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
         .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
-        .table th, .table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .table th {
-            background-color: #4CAF50;
+        .table thead {
+            background-color: #343a40;
             color: white;
         }
 
-        .table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .table tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        .btn {
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 14px;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            transition: 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-success {
-            background-color: #28a745;
+        .btn-custom {
+            background-color: #198754;
             color: white;
-            display: block;
-            width: fit-content;
-            margin: auto;
+            transition: 0.3s;
         }
 
-        .btn-success:hover {
-            background-color: #1e7e34;
-        }
-
-        form {
-            display: inline;
+        .btn-custom:hover {
+            background-color: #145c38;
         }
     </style>
 </head>
 <body>
-<div class="container mt-6">
-<h1>Student List</h1>
-<table class="table table-student">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Prenom</th>
-        <th>Email</th>
-        <th>Date_naissance</th>
 
-    </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>${student.id}</td>
-            <td>${student.nom}</td>
-            <td>${student.prenom}</td>
-            <td>${student.email}</td>
-            <td>${student.date_naissance}</td>
-        </tr>
-    </tbody>
-</table>
-<a href="student" class="btn btn-success">Add New Student</a>
+<div class="container">
+    <h2 class="text-center mb-4">Liste des Étudiants</h2>
+
+    <div class="card">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Date de naissance</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${student.id}</td>
+                <td>${student.nom}</td>
+                <td>${student.prenom}</td>
+                <td>${student.email}</td>
+                <td>${student.date_naissance}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="student" class="btn btn-lg btn-custom"><i class="fas fa-plus"></i> Ajouter un étudiant</a>
+    </div>
 </div>
 </body>
 </html>

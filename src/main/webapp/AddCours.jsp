@@ -77,6 +77,8 @@
     </style>
 </head>
 <body>
+
+
 <div class="container mt-5">
     <h1>Create Cours</h1>
     <form action="cours" method="post">
