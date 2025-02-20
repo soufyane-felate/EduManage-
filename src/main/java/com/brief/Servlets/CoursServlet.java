@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-@WebServlet("CoursServlet")
+@WebServlet("/CoursServlet")
 public class CoursServlet extends HttpServlet {
     private final CoursDao coursDao = new CoursDao();
     @Override

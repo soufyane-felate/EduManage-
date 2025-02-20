@@ -32,6 +32,6 @@ public class AddStudentServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new ServletException("Database error", e);
         }
-        response.sendRedirect("listStudents");  // Redirect to student list
+        response.sendRedirect("listStudents");
     }
 }
