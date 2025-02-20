@@ -7,18 +7,18 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-
 import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/addStudent")
 public class AddStudentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nom = request.getParameter("name");
+        String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String email = request.getParameter("email");
-        String dateNaissance = request.getParameter("date");
+        String dateNaissance = request.getParameter("date_naissance");
+
+
 
         Student student = new Student();
         student.setNom(nom);
@@ -30,8 +30,8 @@ public class AddStudentServlet extends HttpServlet {
         try {
             studentDao.create(student);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new ServletException("Database error", e);
         }
-        response.sendRedirect("listStudents");
+        response.sendRedirect("listStudents");  // Redirect to student list
     }
 }

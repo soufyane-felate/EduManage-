@@ -88,7 +88,8 @@
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <input type="text" class="form-control" name="description" id="description">
+            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+
         </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>

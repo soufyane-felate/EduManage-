@@ -5,82 +5,63 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Liste des Étudiants</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            background-color: #f4f7f9;
-        }
-        .container {
-            margin-top: 50px;
-        }
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .table {
-            margin-top: 20px;
-        }
-        .table thead {
-            background-color: #343a40;
-            color: white;
-        }
-        .btn-custom {
-            background-color: #198754;
-            color: white;
-            transition: 0.3s;
-        }
-        .btn-custom:hover {
-            background-color: #145c38;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
-    <h2 class="text-center mb-4">Liste des Étudiants</h2>
-    <div class="card">
-        <table class="table table-striped table-hover">
-            <thead>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Liste des Étudiants</h1>
+        <a href="AddStudent.jsp" class="btn btn-success">Ajouter un étudiant</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover shadow-sm">
+            <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Email</th>
-                <th>Date de naissance</th>
+                <th>Date de Naissance</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <%
-                List<Student> students = (List<Student>) request.getAttribute("students");
-                if (students != null && !students.isEmpty()) {
-                    for (Student student : students) {
-            %>
+            <% List<Student> students = (List<Student>) request.getAttribute("students"); %>
+            <% if (students != null && !students.isEmpty()) { %>
+            <% for (Student student : students) { %>
             <tr>
                 <td><%= student.getId() %></td>
                 <td><%= student.getNom() %></td>
                 <td><%= student.getPrenom() %></td>
                 <td><%= student.getEmail() %></td>
                 <td><%= student.getDateNaissance() %></td>
+                <td>
+                    <a href="StudentServlet?action=edit&id=<%= student.getId() %>" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="StudentServlet?action=delete&id=<%= student.getId() %>"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?')">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
             </tr>
-            <%
-                }
-            } else {
-            %>
+            <% } %>
+            <% } else { %>
             <tr>
-                <td colspan="5" class="text-center">Aucun étudiant trouvé</td>
+                <td colspan="6" class="text-center text-muted">Aucun etudiant trouvé</td>
             </tr>
-            <%
-                }
-            %>
+            <% } %>
             </tbody>
         </table>
     </div>
-    <div class="text-center mt-3">
-        <a href="AddStudent.jsp" class="btn btn-lg btn-custom"><i class="fas fa-plus"></i> Ajouter un étudiant</a>
-    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
