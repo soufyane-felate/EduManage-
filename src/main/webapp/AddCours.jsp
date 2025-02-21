@@ -81,7 +81,7 @@
 
 <div class="container mt-5">
     <h1>Create Cours</h1>
-    <form action="cours" method="post">
+    <form action="CoursServlet?action=createCours" method="post">
         <div class="form-group">
             <label for="name">Nom du cours:</label>
             <input type="text" class="form-control" name="name" id="name">

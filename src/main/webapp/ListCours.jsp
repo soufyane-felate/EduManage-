@@ -87,7 +87,7 @@
 
 
     <div class="text-center">
-        <a href="cours" class="btn btn-lg btn-custom"><i class="fas fa-plus"></i> Ajouter un nouveau cours</a>
+        <a href="coursList" class="btn btn-lg btn-custom"><i class="fas fa-plus"></i> Ajouter un nouveau cours</a>
     </div>
 </div>
 </body>

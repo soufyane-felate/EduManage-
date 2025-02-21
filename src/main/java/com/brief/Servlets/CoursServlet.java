@@ -10,36 +10,51 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
 @WebServlet("/CoursServlet")
 public class CoursServlet extends HttpServlet {
     private final CoursDao coursDao = new CoursDao();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<Cours> courses = coursDao.getAll();
-            request.setAttribute("cours", courses);
-            request.getRequestDispatcher("AddCours.jsp").forward(request, response);
+            listCours(request, response);
         } catch (SQLException e) {
-            throw new ServletException("Erreur lors de la récupération des courses", e);
+            throw new ServletException("Database error", e);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nom_cours = request.getParameter("nom");
-        String description = request.getParameter("description");
-
-
-        Cours cours = new Cours();
-        cours.setNom_cours(nom_cours);
-        cours.setDescrption(description);
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
-            coursDao.createCours(cours);
-            response.sendRedirect("Listcours");
+            createCours(request, response);
         } catch (SQLException e) {
-            throw new ServletException("Error creating cours", e);
+            throw new ServletException("Database error", e);
         }
     }
-}
 
+    // Afficher la liste des cours
+    private void listCours(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        List<Cours> cours = coursDao.getAll();
+        request.setAttribute("cours", cours);
+        request.getRequestDispatcher("ListCours.jsp").forward(request, response);
+    }
+
+    // Ajouter un cours
+    private void createCours(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        String nom = request.getParameter("nom");
+        String description = request.getParameter("description");
+
+        if (nom == null || description == null || nom.isEmpty() || description.isEmpty()) {
+            response.sendRedirect("AddCours.jsp?error=missingFields");
+            return;
+        }
+
+        Cours cours = new Cours();
+        cours.setNom_cours(nom);
+        cours.setDescrption(description);
+        coursDao.createCours(cours);
+
+        response.sendRedirect("CoursServlet");
+    }
+}
