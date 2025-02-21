@@ -1,6 +1,7 @@
 package com.brief.DAO;
 
 import com.brief.Model.Cours;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,6 @@ public class CoursDao {
             stmt.setString(1, cours.getNom_cours());
             stmt.setString(2, cours.getDescription());
             stmt.executeUpdate();
-            System.out.println("Cours created successfully");
         }
     }
 
@@ -48,8 +48,8 @@ public class CoursDao {
                     cours.setId(rs.getInt("id"));
                     cours.setNom_cours(rs.getString("nom_cours"));
                     cours.setDescription(rs.getString("description"));
-                    System.out.println(cours);
                 }
+                System.out.println(cours);
             }
         }
         return cours;
@@ -63,7 +63,6 @@ public class CoursDao {
             stmt.setString(2, cours.getDescription());
             stmt.setInt(3, cours.getId());
             stmt.executeUpdate();
-            System.out.println("Cours updated successfully");
         }
     }
 
@@ -73,7 +72,6 @@ public class CoursDao {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("Cours deleted successfully");
         }
     }
 }

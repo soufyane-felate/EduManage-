@@ -7,9 +7,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
 @WebServlet("/CoursServlet")
 public class CoursServlet extends HttpServlet {
     private final CoursDao coursDao = new CoursDao();
@@ -44,14 +46,17 @@ public class CoursServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         try {
-            if ("create".equals(action)) {
+            if (action.equals("create")) {
                 String nom_cours = request.getParameter("nom_cours");
                 String description = request.getParameter("description");
 
-                Cours cours = new Cours(nom_cours, description);
+                Cours cours = new Cours();
+                cours.setNom_cours(nom_cours);
+                cours.setDescription(description);
+
                 coursDao.createCours(cours);
                 response.sendRedirect("CoursServlet?action=list");
-            } else if ("update".equals(action)) {
+            } else if (action.equals("update")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 String nom_cours = request.getParameter("nom_cours");
                 String description = request.getParameter("description");

@@ -21,6 +21,9 @@ public class AddCoursServlet extends HttpServlet {
 
         Cours cours = new Cours(nomCours, description);
         CoursDao coursDao = new CoursDao();
+        System.out.println(nomCours);
+        System.out.println(description);
+
 
         try {
             coursDao.createCours(cours);

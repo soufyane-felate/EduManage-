@@ -1,4 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.brief.Model.Student" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,11 +14,6 @@
 <body>
 <div class="container">
     <h2 class="text-center mb-4">Liste des Cours</h2>
-
-    <c:if test="${empty coursList}">
-        <p class="text-center text-danger">Aucun cours disponible.</p>
-    </c:if>
-
     <table class="table table-striped">
         <thead>
         <tr>
