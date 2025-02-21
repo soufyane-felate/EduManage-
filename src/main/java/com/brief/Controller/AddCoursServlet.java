@@ -10,20 +10,24 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
-@WebServlet("/cours")
+
+@WebServlet("/addCours")
 public class AddCoursServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String nom_cours = request.getParameter("name");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nomCours = request.getParameter("nom_cours");
         String description = request.getParameter("description");
-        Cours cours = new Cours();
-        cours.setNom_cours(nom_cours);
-        cours.setDescrption(description);
-        Cours coursDao = new Cours();
 
-        response.sendRedirect("listStudents");
+        Cours cours = new Cours(nomCours, description);
+        CoursDao coursDao = new CoursDao();
+
+        try {
+            coursDao.createCours(cours);
+            response.sendRedirect("listCours");
+            System.out.println(cours);
+        } catch (SQLException e) {
+            throw new ServletException("Erreur lors de l'ajout du cours", e);
+        }
     }
-
-    }
-
-
-
+}

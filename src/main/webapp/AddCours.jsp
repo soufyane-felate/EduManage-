@@ -1,16 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: oucht
-  Date: 2/18/2025
-  Time: 10:28 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <title>Create Student</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Cours</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +17,6 @@
             align-items: center;
             height: 100vh;
         }
-
         .container {
             background: white;
             padding: 30px;
@@ -30,70 +24,23 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             width: 400px;
         }
-
-        h1 {
-            text-align: center;
-            color: #343a40;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            font-weight: bold;
-            color: #495057;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 18px;
-            background-color: #007bff;
-            border: none;
-            transition: 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-
-
-<div class="container mt-5">
-    <h1>Create Cours</h1>
-    <form action="cours" method="post">
+<div class="container">
+    <h1>Ajouter un Cours</h1>
+    <form action="CoursServlet" method="post">
+        <input type="hidden" name="action" value="create">
         <div class="form-group">
-            <label for="name">Nom du cours:</label>
-            <input type="text" class="form-control" name="name" id="name">
+            <label for="nom_cours">Nom du Cours</label>
+            <input type="text" class="form-control" id="nom_cours" name="nom_cours" required>
         </div>
         <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
-
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
 </div>
-
 </body>
 </html>

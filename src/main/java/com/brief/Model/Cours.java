@@ -1,19 +1,22 @@
-
 package com.brief.Model;
-
 
 public class Cours {
     private int id;
     private String nom_cours;
-    private String descrption;
+    private String description;
 
-    public Cours(int id, String nom_cours, String descrption) {
+    public Cours(int id, String nom_cours, String description) {
         this.id = id;
         this.nom_cours = nom_cours;
-        this.descrption = descrption;
+        this.description = description;
     }
 
     public Cours() {
+    }
+
+    public Cours(String nom_cours, String description) {
+        this.nom_cours = nom_cours;
+        this.description = description;
     }
 
     public int getId() {
@@ -32,11 +35,11 @@ public class Cours {
         this.nom_cours = nom_cours;
     }
 
-    public String getDescrption() {
-        return descrption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescrption(String descrption) {
-        this.descrption = descrption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
