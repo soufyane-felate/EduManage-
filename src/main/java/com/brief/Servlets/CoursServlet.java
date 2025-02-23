@@ -17,7 +17,8 @@ public class CoursServlet extends HttpServlet {
     private final CoursDao coursDao = new CoursDao();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String action = request.getParameter("action");
 
         try {
@@ -25,7 +26,14 @@ public class CoursServlet extends HttpServlet {
                 List<Cours> coursList = coursDao.getAll();
                 request.setAttribute("coursList", coursList);
                 request.getRequestDispatcher("ListCours.jsp").forward(request, response);
-                System.out.println(coursList);
+            } else if (action.equals("select_courses")) {
+                int studentId = Integer.parseInt(request.getParameter("student_id"));
+                List<Cours> coursList = coursDao.getAll();
+                request.setAttribute("coursList", coursList);
+                request.setAttribute("student_id", studentId);
+                request.getRequestDispatcher("SelectCours.jsp").forward(request, response);
+
+                System.out.println("Courses fetched: " + coursList);
             } else if (action.equals("edit")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Cours cours = coursDao.getById(id);
@@ -46,7 +54,15 @@ public class CoursServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         try {
-            if (action.equals("create")) {
+            if (action.equals("select_courses")) {
+                int studentId = Integer.parseInt(request.getParameter("student_id"));
+                // Fetch available courses and pass them to the JSP
+                List<Cours> coursList = coursDao.getAll();
+                request.setAttribute("coursList", coursList);
+                request.setAttribute("student_id", studentId);
+                request.getRequestDispatcher("SelectCours.jsp").forward(request, response);
+            }
+           else if (action.equals("create")) {
                 String nom_cours = request.getParameter("nom_cours");
                 String description = request.getParameter("description");
 

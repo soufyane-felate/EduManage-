@@ -1,6 +1,8 @@
 package com.brief.Servlets;
 
+import com.brief.DAO.CoursDao;
 import com.brief.DAO.StudentDao;
+import com.brief.Model.Cours;
 import com.brief.Model.Student;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,7 +19,8 @@ public class StudentServlet extends HttpServlet {
     private final StudentDao studentDao = new StudentDao();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String action = request.getParameter("action");
 
         try {
@@ -34,6 +37,9 @@ public class StudentServlet extends HttpServlet {
                     case "delete":
                         deleteStudent(request, response);
                         break;
+                    case "select_courses":
+                        showCourseSelectionForm(request, response);
+                        break;
                     default:
                         listStudents(request, response);
                         break;
@@ -42,6 +48,7 @@ public class StudentServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new ServletException("Database error", e);
         }
+
     }
 
     @Override
@@ -62,12 +69,21 @@ public class StudentServlet extends HttpServlet {
     }
 
     //  List Students
-    private void listStudents(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        List<Student> students = studentDao.getAll();
+    private void listStudents(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        List<Student> students = studentDao.getAllStudentsWithCourses();
         request.setAttribute("students", students);
-        request.getRequestDispatcher("ListStudent.jsp").forward(request, response);
+        request.getRequestDispatcher("/dashbord.jsp").forward(request, response);
     }
-
+    private void showCourseSelectionForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        int studentId = Integer.parseInt(request.getParameter("student_id"));
+        CoursDao coursDao = new CoursDao();
+        List<Cours> coursList = coursDao.getAll();
+        request.setAttribute("coursList", coursList);
+        request.setAttribute("student_id", studentId);
+        request.getRequestDispatcher("SelectCours.jsp").forward(request, response);
+    }
     // Show Form for Adding a New Student
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("AddStudent.jsp").forward(request, response);
@@ -124,7 +140,7 @@ public class StudentServlet extends HttpServlet {
         response.sendRedirect("StudentServlet?action=list");
     }
 
-    //  Update an Existing Student (Fixed ID Null Issue)
+    //  Update
     private void updateStudent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String idParam = request.getParameter("id");
 

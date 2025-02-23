@@ -1,11 +1,15 @@
 package com.brief.Model;
 
+import java.util.List;
+
 public class Student {
     int id;
     String nom;
     String prenom;
     String email;
     String dateNaissance;
+    private List<Cours> courses;
+
     public Student(String nom, String prenom, String email, String dateNaissance) {
         this.nom = nom;
         this.prenom = prenom;
@@ -15,7 +19,13 @@ public class Student {
 
     public Student() {
     }
+    public List<Cours> getCourses() {
+        return courses;
+    }
 
+    public void setCourses(List<Cours> courses) {
+        this.courses = courses;
+    }
     public int getId() {
         return id;
     }

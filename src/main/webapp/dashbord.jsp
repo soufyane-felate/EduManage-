@@ -55,14 +55,17 @@
     <div class="row">
         <div class="col-md-3 sidebar">
             <h3>Dashboard</h3>
-            <a href="AddStudent.jsp"  data-bs-target="#addStudentModal">
+            <a href="AddStudent.jsp" data-bs-target="#addStudentModal">
                 <i class="fas fa-user-plus"></i> Add Student
             </a>
-            <a href="AddCours.jsp"  data-bs-target="#addCourseModal">
+            <a href="AddCours.jsp" data-bs-target="#addCourseModal">
                 <i class="fas fa-book"></i> Add Course
             </a>
-            <a href="#listStudents">
+            <a href="StudentServlet?action=list">
                 <i class="fas fa-users"></i> List Students
+            </a>
+            <a href="CoursServlet?action=list">
+                <i class="fas fa-book"></i> List Courses
             </a>
         </div>
 
@@ -94,8 +97,12 @@
                             <td><%= student.getEmail() %></td>
                             <td><%= student.getDateNaissance() %></td>
                             <td>
-
-                                <span class="badge bg-primary"></span>
+                                <%
+                                    List<Cours> courses = student.getCourses();
+                                    if (courses != null && !courses.isEmpty()) {
+                                        for (Cours cours : courses) {
+                                %>
+                                <span class="badge bg-primary"><%= cours.getNom_cours() %></span>
                                 <%
                                     }
                                 } else {
@@ -106,15 +113,27 @@
                                 %>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="StudentServlet?action=edit&id=<%= student.getId() %>" class="btn btn-sm btn-warning">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a href="StudentServlet?action=delete&id=<%= student.getId() %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this student?');">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                                <a href="StudentServlet?action=select_courses&student_id=<%= student.getId() %>" class="btn btn-sm btn-info">
+                                    <i class="fas fa-book"></i> Add Courses
+                                </a>
                             </td>
                         </tr>
-
+                        <%
+                            }
+                        } else {
+                        %>
                         <tr>
                             <td colspan="6" class="text-center">No students found.</td>
                         </tr>
-
+                        <%
+                            }
+                        %>
                         </tbody>
                     </table>
                 </div>
