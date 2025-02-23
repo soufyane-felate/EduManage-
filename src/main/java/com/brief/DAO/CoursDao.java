@@ -17,16 +17,7 @@ public class CoursDao {
             stmt.executeUpdate();
         }
     }
-    public void enrollStudentInCourse(int studentId, int courseId) throws SQLException {
-        String sql = "INSERT INTO enrollments (student_id, course_id, date_inscription) VALUES (?, ?, ?)";
-        try (Connection conn = DbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, studentId);
-            stmt.setInt(2, courseId);
-            stmt.setDate(3, new java.sql.Date(System.currentTimeMillis())); // Current date
-            stmt.executeUpdate();
-        }
-    }
+
     public List<Cours> getAll() throws SQLException {
         List<Cours> coursList = new ArrayList<>();
         String sql = "SELECT * FROM courses";

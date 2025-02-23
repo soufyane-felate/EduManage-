@@ -108,7 +108,7 @@ public class StudentServlet extends HttpServlet {
 
         Student student = studentDao.getById(id);
         if (student != null) {
-            request.setAttribute("student", student);
+            request.setAttribute("student", student); // Set the student object in the request
             request.getRequestDispatcher("EditStudent.jsp").forward(request, response);
         } else {
             response.sendRedirect("StudentServlet?action=list&error=notFound");
