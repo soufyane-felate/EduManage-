@@ -21,12 +21,16 @@ public class CoursServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
+
         try {
             if (action == null || action.equals("list")) {
                 List<Cours> coursList = coursDao.getAll();
                 request.setAttribute("coursList", coursList);
                 request.getRequestDispatcher("ListCours.jsp").forward(request, response);
-            } else if (action.equals("select_courses")) {
+            }
+
+
+            else if (action.equals("select_courses")) {
                 int studentId = Integer.parseInt(request.getParameter("student_id"));
                 List<Cours> coursList = coursDao.getAll();
                 request.setAttribute("coursList", coursList);
@@ -34,12 +38,16 @@ public class CoursServlet extends HttpServlet {
                 request.getRequestDispatcher("SelectCours.jsp").forward(request, response);
 
                 System.out.println("Courses fetched: " + coursList);
-            } else if (action.equals("edit")) {
+            }
+
+            else if (action.equals("edit")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Cours cours = coursDao.getById(id);
                 request.setAttribute("cours", cours);
                 request.getRequestDispatcher("EditCours.jsp").forward(request, response);
-            } else if (action.equals("delete")) {
+            }
+
+            else if (action.equals("delete")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 coursDao.delete(id);
                 response.sendRedirect("CoursServlet?action=list");
@@ -56,12 +64,12 @@ public class CoursServlet extends HttpServlet {
         try {
             if (action.equals("select_courses")) {
                 int studentId = Integer.parseInt(request.getParameter("student_id"));
-                // Fetch available courses and pass them to the JSP
                 List<Cours> coursList = coursDao.getAll();
                 request.setAttribute("coursList", coursList);
                 request.setAttribute("student_id", studentId);
                 request.getRequestDispatcher("SelectCours.jsp").forward(request, response);
             }
+
            else if (action.equals("create")) {
                 String nom_cours = request.getParameter("nom_cours");
                 String description = request.getParameter("description");
@@ -72,7 +80,9 @@ public class CoursServlet extends HttpServlet {
 
                 coursDao.createCours(cours);
                 response.sendRedirect("CoursServlet?action=list");
-            } else if (action.equals("update")) {
+            }
+
+           else if (action.equals("update")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 String nom_cours = request.getParameter("nom_cours");
                 String description = request.getParameter("description");

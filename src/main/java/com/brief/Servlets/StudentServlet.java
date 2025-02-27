@@ -75,6 +75,7 @@ public class StudentServlet extends HttpServlet {
         request.setAttribute("students", students);
         request.getRequestDispatcher("/dashbord.jsp").forward(request, response);
     }
+
     private void showCourseSelectionForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         int studentId = Integer.parseInt(request.getParameter("student_id"));
@@ -84,6 +85,7 @@ public class StudentServlet extends HttpServlet {
         request.setAttribute("student_id", studentId);
         request.getRequestDispatcher("SelectCours.jsp").forward(request, response);
     }
+
     // Show Form for Adding a New Student
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("AddStudent.jsp").forward(request, response);
@@ -108,7 +110,7 @@ public class StudentServlet extends HttpServlet {
 
         Student student = studentDao.getById(id);
         if (student != null) {
-            request.setAttribute("student", student); // Set the student object in the request
+            request.setAttribute("student", student);
             request.getRequestDispatcher("EditStudent.jsp").forward(request, response);
         } else {
             response.sendRedirect("StudentServlet?action=list&error=notFound");

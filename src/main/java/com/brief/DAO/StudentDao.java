@@ -92,8 +92,6 @@ public class StudentDao {
         }
     }
 
-
-
     // Enroll a student in a course
     public void enrollStudentInCourse(int studentId, int courseId) throws SQLException {
         String sql = "INSERT INTO enrollments (student_id, course_id, date_inscription) VALUES (?, ?, ?)";
@@ -105,6 +103,7 @@ public class StudentDao {
             stmt.executeUpdate();
         }
     }
+
     public List<Cours> getCoursesByStudentId(int studentId) throws SQLException {
         List<Cours> courses = new ArrayList<>();
         String sql = "SELECT c.* FROM courses c JOIN enrollments e ON c.id = e.course_id WHERE e.student_id = ?";
@@ -123,6 +122,7 @@ public class StudentDao {
         }
         return courses;
     }
+
     public List<Student> getAllStudentsWithCourses() throws SQLException {
         List<Student> students = new ArrayList<>();
         String sql = "SELECT s.id, s.nom, s.prenom, s.email, s.date_naissance, c.id AS course_id, c.nom_cours, c.description " +
@@ -160,4 +160,7 @@ public class StudentDao {
         }
         return students;
     }
+
+
+
 }
