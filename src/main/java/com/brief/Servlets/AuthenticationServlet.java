@@ -35,8 +35,8 @@ public class AuthenticationServlet implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
 
-        String uri = req.getRequestURI();
 
+        String uri = req.getRequestURI();
         if (uri.endsWith("login.jsp") || uri.contains("/resources/") ||
                 uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".ico")) {
             chain.doFilter(request, response);

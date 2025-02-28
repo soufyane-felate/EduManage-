@@ -74,6 +74,8 @@
             </a>
             <a href="CoursServlet?action=list">
                 <i class="fas fa-book"></i> List Courses
+            </a>  <a href="profil.jsp">
+                <i class="far fa-user-circle"></i> Profil
             </a>
         </div>
 
